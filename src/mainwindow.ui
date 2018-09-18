@@ -1,0 +1,661 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1612</width>
+    <height>1530</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Jahshaka</string>
+  </property>
+  <property name="windowOpacity">
+   <double>1.000000000000000</double>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QToolButton
+{
+}
+
+QToolButton:disabled
+{
+}
+
+QToolButton:pressed
+{
+}
+
+QToolButton:focus
+{
+}
+
+QToolButton:hover
+{
+}
+
+QToolButton:checked
+{
+    background-color: #2980b9;
+}
+
+#header {
+	background: #111;
+	border-bottom: 1px solid black;
+}
+
+#worlds_menu, #player_menu, #editor_menu, #assets_menu {
+	font-size: 17px;
+	padding: 14px;
+	border-bottom-width: 4px;
+	border-bottom-style: solid;
+	border-color: #111;
+	border-radius: 0px;
+	background: transparent;
+}
+
+/* ====== TABS ====== */
+/* https://stackoverflow.com/a/33006868/996468 */
+QTabBar {
+	background-color: #151515;
+	qproperty-drawBase: 0;
+	/* border-top: 1px solid #111; */
+}
+
+QTabWidget::tab-bar {
+    left: 0;
+}
+
+QTabBar::close-button {
+
+}
+
+QTabWidget::pane {
+
+}
+
+QTabBar::tab:top {
+    background-color: #181818;
+    border-top: 2px solid #151515;
+    padding: 8px 14px;
+    color: #777;
+}
+
+QTabBar::tab:top:selected {
+	background-color: #202020;
+	border-top: 1px solid #3498db;
+    color: #EEE;
+}
+
+QTabBar::tab:bottom {
+    background-color: #181818;
+    border-bottom: 2px solid #151515;
+    padding: 8px 14px;
+    color: #777;
+}
+
+QTabBar::tab:bottom:selected {
+	background-color: #202020;
+	border-bottom: 1px solid #3498db;
+    color: #EEE;
+}
+
+/* ========================== */
+
+QCheckBox {
+    spacing: 0 5px;
+}
+
+QCheckBox::indicator {
+    width: 18px;
+    height: 18px;
+}
+
+QCheckBox::indicator::unchecked {
+	image: url(:/icons/check-unchecked.png);
+}
+
+QCheckBox::indicator::checked {	
+	image: url(:/icons/check-checked.png);
+}
+
+/* ========================== */
+
+QScrollBar:vertical {
+	width: 12px;
+	border-left: 1px solid black;
+    background: transparent;
+}
+
+QScrollBar::handle:vertical {
+    background: #5A5F66;
+	border: 1px solid black;
+	min-height: 32px;
+	margin: 2px 1px 2px 1px;
+	border-radius: 4px; /* this appears to be tied to the (width of the scrollbar / 2) */
+}
+
+QScrollBar::handle:vertical:hover {
+    background-color: #6b6f77;
+}
+
+QScrollBar::add-page:vertical,  QScrollBar::sub-page:vertical {
+    background: #17181a;
+}
+
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+      border: none;
+      background: none;
+}
+
+/* ========================== */
+
+
+
+/* ========================== */
+
+QMainWindow {
+    background-color: #151515;
+}
+
+QMainWindow::separator {
+    width: 1px;
+    height: 0px;
+    margin: 0px;
+    padding: 0px;
+	background: black;
+}
+
+* {
+    color: #EEE;
+}
+
+QDialog {
+    background: #1A1A1A;
+}
+
+QMessageBox {
+    background: #1A1A1A;
+}
+
+QMessageBox QPushButton  {
+    border: none;
+    background-color: #212121;
+    padding: 4px 12px;
+}
+
+QMessageBox QPushButton:hover {
+    background-color: #555;
+}
+
+/* ==== DOCKS === */
+
+QDockWidget::title {
+    background-color: #1E1E1E;
+    text-align: center;
+    padding: 9px;
+	border-bottom: 1px solid black;
+}
+
+QDockWidget {
+    border: 0;
+    titlebar-close-icon: url(:/icons/close.png);
+    titlebar-normal-icon: url(:/icons/popout.png);
+}
+
+QDockWidget::close-button, QDockWidget::float-button {
+    padding: 0px;
+    icon-size: 11px; /* maximum icon size */
+}
+
+QDockWidget::close-button {
+    subcontrol-position: top right;
+    subcontrol-origin: margin;
+    position: absolute;
+    top: 0px; right: 0px; bottom: 0px;
+    width: 11px;
+}
+
+QDockWidget::float-button {
+    subcontrol-position: top right;
+    subcontrol-origin: margin;
+    position: absolute;
+    top: 0px; right: 12px; bottom: 0px;
+    width: 11px;
+}
+
+QDockWidget::close-button:hover, QDockWidget::float-button:hover {
+	background: transparent;
+	icon-size: 11px;
+	border: 0;
+}
+
+/* ==== VR === */
+
+QPushButton#vrButton {
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
+}
+
+QPushButton#vrButton[vrMode="1"] {
+    background-color: #e74c3c;
+}
+
+QPushButton#vrButton[vrMode="2"] {
+    background-color: #2980b9;
+}
+
+QPushButton#vrButton:hover {
+    background-color: #3498db;
+}
+
+/* ====== Labels, Buttons ====== */
+QPushButton, QToolButton  {
+    border: none;
+    border-radius: 1px;
+    background-color: #333;
+}
+
+QPushButton:hover, QToolButton:hover {
+    background-color: #444;
+}
+
+QToolTip {
+    padding: 2px;
+    border: 0;
+    background: black;
+    opacity: 200;
+}
+
+QLabel {
+    color: #BBB;
+}
+
+/* ====== TOOLBAR ====== */
+QToolBar > QToolButton, QWidget#vrButton, #pmButton {
+    background-color: #212121;
+    border: 1px solid #1e1e1e;
+    border-radius: 2px;
+    padding: 8px;
+    width: 14px;
+    height: 14px;
+    margin: 8px;
+}
+
+QPushButton#pmButton:hover {
+    background-color: #3498db;
+}
+
+QToolBar {
+    background:  #303030;
+   /* spacing: 4px; /* spacing between items in the tool bar */
+    /*min-height: 21px;*/
+    border-bottom: 1px solid black;
+}
+
+QToolBar::handle:horizontal {
+    image: url(:/icons/thandleh.png);
+	width: 24px;
+}
+
+QToolBar::handle:vertical {
+    image: url(:/icons/thandlev.png);
+	height: 24px;
+}
+
+QToolBar::separator:horizontal {
+    background-color: #272727;
+    width: 1px;
+    margin-left: 6px;
+    margin-right: 6px;
+}
+
+/* special override */
+QWidget#addBtn, QWidget#deleteBtn {
+    background-color: #4D4D4D;
+}
+
+QWidget#addBtn:hover, QWidget#deleteBtn:hover {
+    background-color: #555;
+}
+
+QWidget#addBtn:pressed, QWidget#deleteBtn:pressed {
+    background-color: #444;
+}
+
+QMessageBox {
+    background: #222;
+}
+
+</string>
+  </property>
+  <property name="iconSize">
+   <size>
+    <width>30</width>
+    <height>30</height>
+   </size>
+  </property>
+  <property name="dockNestingEnabled">
+   <bool>false</bool>
+  </property>
+  <property name="unifiedTitleAndToolBarOnMac">
+   <bool>false</bool>
+  </property>
+  <widget class="QWidget" name="viewportLayout">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_3">
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <item row="0" column="0">
+     <widget class="QWidget" name="header" native="true">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>54</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <layout class="QGridLayout" name="ohlayout">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QStackedWidget" name="stackedWidget">
+      <property name="currentIndex">
+       <number>-1</number>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <action name="actionSave">
+   <property name="text">
+    <string>Save</string>
+   </property>
+  </action>
+  <action name="actionPreferences">
+   <property name="text">
+    <string>Preferences</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="text">
+    <string>Exit</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>About</string>
+   </property>
+  </action>
+  <action name="actionLicense">
+   <property name="text">
+    <string>License</string>
+   </property>
+  </action>
+  <action name="actionOpenWebsite">
+   <property name="text">
+    <string>Website</string>
+   </property>
+  </action>
+  <action name="actionUndo">
+   <property name="icon">
+    <iconset resource="../app/icons.qrc">
+     <normaloff>:/icons/undo.png</normaloff>:/icons/undo.png</iconset>
+   </property>
+   <property name="text">
+    <string>Undo</string>
+   </property>
+  </action>
+  <action name="actionRedo">
+   <property name="icon">
+    <iconset resource="../app/icons.qrc">
+     <normaloff>:/icons/redo.svg</normaloff>:/icons/redo.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Redo</string>
+   </property>
+  </action>
+  <action name="actionTranslate">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../app/icons.qrc">
+     <normaloff>:/icons/tranlate arrow.svg</normaloff>
+     <normalon>:/icons/tranlate arrow.svg</normalon>
+     <activeon>:/icons/tranlate arrow.svg</activeon>
+     <selectedon>:/icons/tranlate arrow.svg</selectedon>:/icons/tranlate arrow.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Translate Tool</string>
+   </property>
+  </action>
+  <action name="actionRotate">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../app/icons.qrc">
+     <normaloff>:/icons/rotate-to-right.svg</normaloff>:/icons/rotate-to-right.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Rotate Tool</string>
+   </property>
+  </action>
+  <action name="actionScale">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../app/icons.qrc">
+     <normaloff>:/icons/expand-arrows.svg</normaloff>:/icons/expand-arrows.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Scale Tool</string>
+   </property>
+  </action>
+  <action name="actionGlobalSpace">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../app/icons.qrc">
+     <normaloff>:/icons/world.svg</normaloff>:/icons/world.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Global Space</string>
+   </property>
+  </action>
+  <action name="actionLocalSpace">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../app/icons.qrc">
+     <normaloff>:/icons/sceneobject.svg</normaloff>:/icons/sceneobject.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Local Space</string>
+   </property>
+  </action>
+  <action name="actionFreeCamera">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../app/icons.qrc">
+     <normaloff>:/icons/people.svg</normaloff>:/icons/people.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Free Camera</string>
+   </property>
+  </action>
+  <action name="actionArcballCam">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../app/icons.qrc">
+     <normaloff>:/icons/local.svg</normaloff>:/icons/local.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Arcball Camera</string>
+   </property>
+   <property name="toolTip">
+    <string>Arcball Camera</string>
+   </property>
+  </action>
+  <action name="actionEditUndo">
+   <property name="text">
+    <string>Undo</string>
+   </property>
+  </action>
+  <action name="actionEditRedo">
+   <property name="text">
+    <string>Redo</string>
+   </property>
+  </action>
+  <action name="actionClose">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Close</string>
+   </property>
+  </action>
+  <action name="actionFacebook">
+   <property name="text">
+    <string>Facebook</string>
+   </property>
+  </action>
+  <action name="actionOutliner">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Outliner</string>
+   </property>
+  </action>
+  <action name="actionProperties">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Properties</string>
+   </property>
+  </action>
+  <action name="actionAnimation">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Animation</string>
+   </property>
+  </action>
+  <action name="actionAssets">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Assets</string>
+   </property>
+  </action>
+  <action name="actionPresets">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Presets</string>
+   </property>
+  </action>
+  <action name="actionClose_All">
+   <property name="text">
+    <string>Close All</string>
+   </property>
+  </action>
+  <action name="actionRestore_All">
+   <property name="text">
+    <string>Restore All</string>
+   </property>
+  </action>
+  <action name="actionExport">
+   <property name="text">
+    <string>Export</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="../app/icons.qrc"/>
+ </resources>
+ <connections/>
+</ui>
