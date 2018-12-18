@@ -1,54 +1,3 @@
-<div align="center">
-  <img src="https://i.imgur.com/4KbH9oV.png" width="400"></img>
-</div>
-
-<br>
-
-<div align="center">
-  <a href="http://www.jahshakavr.com/">Website</a>
-  &nbsp;&nbsp;&bull;&nbsp;&nbsp;
-  <a href="https://www.reddit.com/r/jahshaka/">Reddit</a>
-  &nbsp;&nbsp;&bull;&nbsp;&nbsp;
-  <a href="https://github.com/jahshaka/VR/releases">Releases</a>
-</div>
-
-<br>
-
-Jahshaka brings you the future of immersive digital content creation with the leading free and open source digital content creation suite.
-
-![](https://i.imgur.com/Z7VZhGy.jpg)
-
-## Features:
- - View scenes in virtual reality via the Oculus Rift
- - Build and share your scenes with the world
- - Particle System
- - Animation Editor
- - Skeletal Animation
- - Realtime Dynamic Shadows
- - Powerful Extensible Material System
- - Asset Manager
- - Supports 4k displays
- - Custom Shaders and more&hellip;
- - Embedded Monero Miner
- - Physics
-
-## Screenshots
-
-#### Particle System
-![](https://i.imgur.com/XjXUnUx.gif)
-
-#### Skeletal Animation
-![](https://i.imgur.com/qTVhlPp.gif)
-
-#### Shader format
-![](https://i.imgur.com/sgaQpC8.png)
-
-### Bullet Physics
-![](https://giant.gfycat.com/TemptingRingedAsianwaterbuffalo.gif)
-
-#### Monero Miner
-![](https://i.imgur.com/aCY90YE.gif)
-
 ## Building From Source
 
 ### Requirements
@@ -82,10 +31,10 @@ Again, if you want to build the latest code, you might want to do a `git checkou
 - Finally, you might want to change the build target from the default `ALL_BUILD` to `Jahshaka` in the Solution Explorer.
 - Build the application.
 
-If you encounter any issues building, please open an issue.
+- After building, due to how the QML tooling for Qt is at the moment, it's not possible to have it copy over the QML libraries automatically `windeployqt.exe` has to be run manually. This is located at `C:/Qt/bin/windeployqt.exe`. Run it with `--qmldir="path_to_qml_dir`. For example `C:/Qt/bin/windeployqt.exe --qmldir=C:/Qt/5.9.3/msvc2017_64/qml Jahshaka\ Player.exe`.
+- Depending on the version of Qt you have, you will need to get the matching dlls for OpenSSL that Qt was built with. Inside the console on first run you will see something like *SSL version use for build:  "OpenSSL 1.0.2j  26 Sep 2016"*, navigate to https://indy.fulgan.com/SSL/Archive/ and find the matching package for x64 and copy `libeay32.dll` and `ssleay32.dll` to the same directory as your executable.
 
-## Credits
-Royalty-free images from [Pixabay](https://pixabay.com/). Various icons sourced from [flaticon](http://www.flaticon.com/), [iconfinder](https://www.iconfinder.com/) under https://creativecommons.org/licenses/by/3.0/ and [the noun project](https://thenounproject.com/). Specific corresponding READMEs and licenses in their respective folders for free/open source assets used.
+If you encounter any issues building, please open an issue.
 
 ## License(GPLv3)
     http://www.jahshaka.com

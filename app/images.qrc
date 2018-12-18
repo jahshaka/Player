@@ -1,0 +1,32 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/preview.png</file>
+        <file>images/splashv3.png</file>
+        <file>images/empty_canvas.png</file>
+        <file>images/empty_canvas_player.png</file>
+        <file>images/splashv3_d.png</file>
+        <file>images/header.png</file>
+        <file>images/question.png</file>
+        <file>images/question_hover.png</file>
+        <file>images/bg.png</file>
+        <file>images/default_particle.jpg</file>
+        <file>images/jahshakaplayerheader.png</file>
+        <file>images/jahshakastudiodevheader.png</file>
+        <file>images/jahshakastudioheader.png</file>
+        <file>images/info.svg</file>
+        <file>images/cloud-internet-symbol.svg</file>
+        <file>images/web-page-home.svg</file>
+        <file>images/add-square-button.svg</file>
+        <file>images/icons8-arrow-left-filled-100.png</file>
+        <file>images/icons8-arrow-right-filled-100.png</file>
+        <file>images/icons8-library-filled-100.png</file>
+        <file>images/icons8-cloud-filled-100.png</file>
+        <file>images/icons8-exterior-filled-100.png</file>
+        <file>images/icons8-available-updates-filled-100.png</file>
+        <file>images/icons8-automatic-filled-100.png</file>
+        <file>images/icons8-cancel-filled-500.png</file>
+        <file>images/icons8-add-to-collection-filled-100.png</file>
+        <file>images/icons8-down-arrow-filled-100.png</file>
+        <file>images/icons8-delete-filled-90.png</file>
+    </qresource>
+</RCC>

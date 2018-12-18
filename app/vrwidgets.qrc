@@ -1,0 +1,20 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qml/rotatingsquare.qml</file>
+        <file>qml/metasquare.qml</file>
+        <file>qml/infosquare.qml</file>
+        <file>qml/handmen.qml</file>
+        <file>qml/views.qml</file>
+
+        <file>qml/CustomButton.qml</file>
+        <file>qml/DeckButton.qml</file>
+        <file>qml/SceneTile.qml</file>
+        <file>qml/Deck.qml</file>
+        <file>qml/DownloadWidget.qml</file>
+        <file>qml/OnlinePage.qml</file>
+        <file>qml/LibraryPage.qml</file>
+        <file>qml/MainView.qml</file>
+        <file>qml/ControlView.qml</file>
+        <file>qml/MetadataView.qml</file>
+    </qresource>
+</RCC>
