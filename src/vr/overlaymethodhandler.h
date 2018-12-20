@@ -12,9 +12,9 @@ For more information see the LICENSE file
 #ifndef OVERLAYMETHODHANDLER_H
 #define OVERLAYMETHODHANDLER_H
 
-#include <QtNetwork/QNetworkAccessManager>
-#include <QtNetwork/QNetworkRequest>
-#include <QtNetwork/QNetworkReply>
+#include <QNetworkAccessManager>
+#include <QNetworkRequest>
+#include <QNetworkReply>
 
 #include "core/database/database.h"
 

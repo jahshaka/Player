@@ -13,16 +13,15 @@ For more information see the LICENSE file
 #define OVERLAYCONTROLLER_H
 
 #include <QObject>
-#include <QOffscreenSurface>
 #include <QTimer>
 
-#include <QtQuick/QQuickFrameBufferObject>
-#include <QtQuick/QQuickRenderControl>
-#include <QtQuick/QQuickWindow>
-#include <QtQuick/QQuickRenderControl>
-#include <QtGui/QOpenGLFramebufferObject>
-#include <QtGui/QOpenGLContext>
-#include <QtGui/QOffscreenSurface>
+#include <memory>
+
+#include <QOpenGLFramebufferObjectFormat>
+#include <QQuickWindow>
+#include <QQuickRenderControl>
+#include <QOpenGLContext>
+#include <QOffscreenSurface>
 
 QT_FORWARD_DECLARE_CLASS(QQmlEngine)
 QT_FORWARD_DECLARE_CLASS(QQmlComponent)
