@@ -2,11 +2,13 @@ import QtQuick 2.9
 import QtQuick.Window 2.2
 import QtQuick.Layouts 1.0
 import QtQuick.Controls 2.2
+import QtGraphicalEffects 1.0
 
 Rectangle {
     id: rect
     property string sceneThumbnail: ""
     property string sceneName: ""
+    property string sceneGuid: ""
     property string sceneTitle: ""
     property string view: ""
 
@@ -14,56 +16,70 @@ Rectangle {
     Layout.fillWidth: true
     
     property int fauxBorderWidth: 10
+    property bool wasPressed: false
 
     color: "transparent"
 
-Rectangle {
-        anchors.centerIn: parent
+    Rectangle {
+        anchors.centerIn: rect
 
-        color: "green"
+        color: "transparent"
 
-        width: parent.width - fauxBorderWidth
-        height: parent.height - fauxBorderWidth
+        width: rect.width - fauxBorderWidth
+        height: rect.height - fauxBorderWidth
         
-        Image {
-            id: imageBg
-            height: parent.height
-            width: parent.width
-            source: if (sceneThumbnail) "image://guids/" + sceneThumbnail //"qrc://app/images/icons8-arrow-left-filled-100.png"
-            anchors.centerIn: parent
-        }
+        Column {
+            spacing: 2
 
-        Rectangle {
-            id: textView
-            clip: true
+            Item {
+                width: rect.width - fauxBorderWidth
+                height: 248
 
-            anchors {
-                bottom: parent.bottom
-                left: parent.left
-                right: parent.right
-            }
-
-            color: "#1E1E1E"
-            implicitHeight: 50
-
-            Label {
-                color: "#FEFEFE"
-                text: sceneTitle
-                wrapMode: Label.WordWrap
-                font.pixelSize: Qt.application.font.pixelSize * 2
-                anchors {
-                    bottom: parent.bottom
-                    left: parent.left
-                    right: parent.right
-                    centerIn: parent
+                Image {
+                    id: imageBg
+                    smooth: true
+                    width: rect.width - fauxBorderWidth
+                    height: 248 //rect.height - 50
+                    source: if (sceneThumbnail) "image://guids/" + sceneThumbnail //"qrc://app/images/icons8-arrow-left-filled-100.png"
                 }
 
+                FastBlur {
+                    visible: wasPressed
+                    anchors.fill: imageBg
+                    source: imageBg
+                    radius: 32
+                }
+
+                Image {
+                    id: playSceneBtn
+                    visible: view == "library" && wasPressed
+                    enabled: view == "library" && wasPressed
+                    anchors.centerIn: imageBg
+                    sourceSize: Qt.size(108, 108)
+                    source:  "qrc://app/icons/play-arrow.svg"
+                }
+            }
+
+            Label {
+                color: "#FFF"
+                text: sceneTitle
+                wrapMode: Label.WordWrap
+                font.pixelSize: 34
+                font.weight: Font.Bold
+            }
+
+            Label {
+                color: "#AAA"
+                text: sceneTitle
+                wrapMode: Label.WordWrap
+                font.pixelSize: 24
+                font.weight: Font.Medium
             }
         }
 
         MouseArea {
-            width: parent.width
-            height: parent.height
+            width: rect.width
+            height: rect.height
 
             anchors.fill: parent
             anchors.centerIn: parent
@@ -71,7 +87,7 @@ Rectangle {
             hoverEnabled: true
 
             onEntered: {
-                rect.color = "#4297ff"
+                rect.color = wasPressed ? "#006DEF" : Qt.rgba(1, 1, 1, .1) //"#4297ff"
                 if (view == "library") {
                     methodHandler.selectMetadata(guid);
                 } else {
@@ -81,7 +97,11 @@ Rectangle {
 
             onPressed: {
                 rect.color = "#006DEF"
-                if (view == "library") methodHandler.doSomething(guid)
+
+                var theGuid;
+                if (view == "library") theGuid = sceneGuid;
+                if (view == "online") theGuid = actual_guid;
+                methodHandler.emitSelectedTile(theGuid);
             }
 
             onReleased: {
@@ -89,8 +109,62 @@ Rectangle {
             }
 
             onExited: {
-                rect.color = "#111"
-                // methodHandler.selectMetadata("empty")
+                if (wasPressed) {
+                    if (view == "library") {
+                        methodHandler.selectMetadata(guid);
+                    } else {
+                        methodHandler.emitMetadata(featured_image, sceneTitle, guid, sceneName, actual_guid);
+                    }
+                } else {
+                    rect.color = "transparent"
+                    methodHandler.selectMetadata("empty")
+                }
+            }
+
+            // https://stackoverflow.com/questions/18135262/how-to-include-child-mouse-hover-events-in-the-parent-mousearea-using-qml
+            MouseArea {
+                id: playSceneButtonMouseArea
+                hoverEnabled: view == "library" && true
+                enabled: view == "library" && wasPressed
+                width: playSceneBtn.width
+                height: playSceneBtn.height
+
+                anchors.centerIn: parent // works because this is the center of the parent mouse area
+
+                onEntered: {
+                    playSceneBtn.scale = 1.1
+                    playSceneBtn.z = 1
+                }
+
+                onExited: {
+                    playSceneBtn.scale = 1
+                }
+
+                onPressed: {
+                    if (view == "library") {
+                        methodHandler.doSomething(guid)
+                    }
+                }
+            }
+        }
+    }
+
+    Connections {
+        // https://stackoverflow.com/q/52581687/996468
+        target: swipeManager
+
+        onSelectedTileGuid: {
+            var theGuid;
+
+            if (view == "library") theGuid = sceneGuid;
+            if (view == "online") theGuid = actual_guid;
+
+            if (g == theGuid) {
+                wasPressed = true
+                rect.color = "#006DEF"
+            } else {
+                wasPressed = false
+                rect.color = "transparent"
             }
         }
     }

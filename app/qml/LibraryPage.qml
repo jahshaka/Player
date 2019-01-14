@@ -13,81 +13,44 @@ Pane {
     Layout.fillWidth: true
     padding: 0
 
-    ColumnLayout {
-        anchors.fill: parent
-        id: col
+    Grid {
+        anchors.centerIn: parent
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.verticalCenter: parent.verticalCenter
 
-        RowLayout{
-            spacing: 0
+        Layout.fillWidth: true
+        Layout.fillHeight: true
 
-            Item {
-                Layout.fillWidth: true
-            }
+        columns: 4
+        rows: 3
+        columnSpacing: 24
+        rowSpacing: 24
+        leftPadding: 8
 
-            GridView {
-                width: 600 * 3
-                height: 320 * 3
+        // verticalLayoutDirection: Grid.TopToBottom
+        layoutDirection: Qt.LeftToRight
+        flow: Grid.LeftToRight
+        // anchors.centerIn: parent
+        // flickableDirection: Flickable.HorizontalFlick
 
-                // verticalLayoutDirection: Grid.TopToBottom
-                // layoutDirection: Qt.LeftToRight
-                flow: Grid.LeftToRight
-                // anchors.centerIn: parent
-                flickableDirection: Flickable.HorizontalFlick
+        id: grid0
+        // clip: true
+        // interactive: false
 
-                id: grid0
-                clip: true
-                interactive: false
+        // cellWidth: 450
+        // cellHeight: 320
 
-                cellWidth: 600
-                cellHeight: 320
+        Repeater {
+            model: libraryModel
 
-                model: libraryModel
-
-                delegate: SceneTile {
-                    width: 600
-                    height: 320
-                    sceneTitle: name
-                    sceneThumbnail: guid
-                    view: "library"
-                }
-            }
-
-            Item {
-                Layout.fillWidth: true
-            }
-        }
-
-        RowLayout {
-            Layout.fillWidth: true
-
-            CustomButton {
-                icon: "qrc://app/images/icons8-arrow-left-filled-100.png"
-            }
-
-            PageIndicator {
-                id: control
-                count: Math.ceil(grid0.count / 9)
-                currentIndex: 2
-
-                delegate: Rectangle {
-                    implicitWidth: 32
-                    implicitHeight: 32
-
-                    radius: width / 2
-                    color: "#fff" //"#336699"
-
-                    opacity: index === control.currentIndex ? 0.95 : pressed ? 0.7 : 0.45
-
-                    Behavior on opacity {
-                        OpacityAnimator {
-                            duration: 100
-                        }
-                    }
-                }
-            }
-
-            CustomButton {
-                icon: "qrc://app/images/icons8-arrow-right-filled-100.png"
+            delegate: SceneTile {
+                id: moster
+                width: 450
+                height: 336
+                sceneTitle: name
+                sceneThumbnail: guid
+                sceneGuid: guid
+                view: "library"
             }
         }
     }

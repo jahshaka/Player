@@ -12,6 +12,7 @@ For more information see the LICENSE file
 #define WORLDSETTINGS_H
 
 #include <QWidget>
+#include <QButtonGroup>
 
 namespace Ui {
     class WorldSettings;

@@ -343,43 +343,43 @@ void MainWindow::createLobbyScene()
 	//root->setLocalRot(baseRot);
 	scene->rootNode->addChild(root);
 
-    auto node2 = iris::MeshNode::create(); 
-    node2->setMesh(":/content/primitives/vrplane.obj");
-	root->addChild(node2);
-    node2->setLocalScale(QVector3D(3, 1, 5));
-    node2->setLocalRot(QQuaternion::fromEulerAngles(QVector3D(90, 45, 0)));
-    node2->setLocalPos(QVector3D(-14, 1, 2.2 - dist));
-	node2->setPickable(false);
-	node2->pickingGroups = 1 << 5;
+    auto metaNode = iris::MeshNode::create(); 
+    metaNode->setMesh(":/content/primitives/vrplane.obj");
+	root->addChild(metaNode);
+    metaNode->setLocalScale(QVector3D(3, 1, 4));
+    metaNode->setLocalRot(QQuaternion::fromEulerAngles(QVector3D(90, 45, 0)));
+    metaNode->setLocalPos(QVector3D(-12, 1, 2.2 - dist));
+    metaNode->setPickable(false);
+    metaNode->pickingGroups = 1 << 5;
 
-    auto node3 = iris::MeshNode::create();
-    node3->setMesh(":/content/primitives/vrplane.obj");
-	root->addChild(node3);
-    node3->setLocalScale(QVector3D(3, 1, 5));
-    node3->setLocalRot(QQuaternion::fromEulerAngles(QVector3D(90, -45, 0)));
-    node3->setLocalPos(QVector3D(14, 1, 2.2 - dist));
-	node3->setPickable(false);
-	node3->pickingGroups = 1 << 5;
+    auto controlNode = iris::MeshNode::create();
+    controlNode->setMesh(":/content/primitives/vrplane.obj");
+	root->addChild(controlNode);
+    controlNode->setLocalScale(QVector3D(3, 1, 4));
+    controlNode->setLocalRot(QQuaternion::fromEulerAngles(QVector3D(90, -45, 0)));
+    controlNode->setLocalPos(QVector3D(12, 1, 2.2 - dist));
+    controlNode->setPickable(false);
+    controlNode->pickingGroups = 1 << 5;
 
-    auto node = iris::MeshNode::create();
-    node->setMesh(":/content/primitives/vrplane.obj");
-	root->addChild(node);
-    node->setLocalScale(QVector3D(10, 1, 5));
-    node->setLocalRot(QQuaternion::fromEulerAngles(QVector3D(90, 0, 0)));
-    node->setLocalPos(QVector3D(0, 1, 0 - dist));
-	node->setPickable(false);
-	node->pickingGroups = 1 << 5;
+    auto viewNode = iris::MeshNode::create();
+    viewNode->setMesh(":/content/primitives/vrplane1.obj");
+	root->addChild(viewNode);
+    viewNode->setLocalScale(QVector3D(10, 1, 5));
+    viewNode->setLocalRot(QQuaternion::fromEulerAngles(QVector3D(90, 0, 0)));
+    viewNode->setLocalPos(QVector3D(0, 1, 0 - dist));
+    viewNode->setPickable(false);
+    viewNode->pickingGroups = 1 << 5;
 
     float deckRot = 45;
 
-    auto node4 = iris::MeshNode::create();
-    node4->setMesh(":/content/primitives/vrplane.obj");
-    root->addChild(node4);
-    node4->setLocalScale(QVector3D(8, 1, 1));
-    node4->setLocalRot(QQuaternion::fromEulerAngles(QVector3D(deckRot, 0, 0)));
-    node4->setLocalPos(QVector3D(0, -6, 1 - dist));
-    node4->setPickable(false);
-    node4->pickingGroups = 1 << 5;
+    auto deckNode = iris::MeshNode::create();
+    deckNode->setMesh(":/content/primitives/vrplane.obj");
+    root->addChild(deckNode);
+    deckNode->setLocalScale(QVector3D(8, 1, 1));
+    deckNode->setLocalRot(QQuaternion::fromEulerAngles(QVector3D(deckRot, 0, 0)));
+    deckNode->setLocalPos(QVector3D(0, -6, 1 - dist));
+    deckNode->setPickable(false);
+    deckNode->pickingGroups = 1 << 5;
 
     //auto node5 = iris::MeshNode::create();
     //node5->setMesh(":/content/primitives/vrdeck.obj");
@@ -392,25 +392,25 @@ void MainWindow::createLobbyScene()
 
     // apply default material to mesh nodes if there is none
 
-    auto mat2 = iris::CustomMaterial::create();
-    mat2->generate(IrisUtils::getAbsoluteAssetPath("/app/shader_defs/Widget.shader"));
-    mat2->addTexture("u_matTexture", sceneView->metaController->texture);
-    node2->setMaterial(mat2);
+    auto metaMaterial = iris::CustomMaterial::create();
+    metaMaterial->generate(IrisUtils::getAbsoluteAssetPath("/app/shader_defs/Widget.shader"));
+    metaMaterial->addTexture("u_matTexture", sceneView->metaController->texture);
+    metaNode->setMaterial(metaMaterial);
 
-    auto mat = iris::CustomMaterial::create();
-    mat->generate(IrisUtils::getAbsoluteAssetPath("/app/shader_defs/Widget.shader"));
-    mat->addTexture("u_matTexture", sceneView->controller->texture);
-    node->setMaterial(mat);
+    auto viewMaterial = iris::CustomMaterial::create();
+    viewMaterial->generate(IrisUtils::getAbsoluteAssetPath("/app/shader_defs/Widget.shader"));
+    viewMaterial->addTexture("u_matTexture", sceneView->controller->texture);
+    viewNode->setMaterial(viewMaterial);
 
-    auto mat3 = iris::CustomMaterial::create();
-    mat3->generate(IrisUtils::getAbsoluteAssetPath("/app/shader_defs/Widget.shader"));
-    mat3->addTexture("u_matTexture", sceneView->controlController->texture);
-    node3->setMaterial(mat3);
+    auto controlMaterial = iris::CustomMaterial::create();
+    controlMaterial->generate(IrisUtils::getAbsoluteAssetPath("/app/shader_defs/Widget.shader"));
+    controlMaterial->addTexture("u_matTexture", sceneView->controlController->texture);
+    controlNode->setMaterial(controlMaterial);
 
-    auto mat4 = iris::CustomMaterial::create();
-    mat4->generate(IrisUtils::getAbsoluteAssetPath("/app/shader_defs/Widget.shader"));
-    mat4->addTexture("u_matTexture", sceneView->viewController->texture);
-    node4->setMaterial(mat4);
+    auto deckMaterial = iris::CustomMaterial::create();
+    deckMaterial->generate(IrisUtils::getAbsoluteAssetPath("/app/shader_defs/Widget.shader"));
+    deckMaterial->addTexture("u_matTexture", sceneView->viewController->texture);
+    deckNode->setMaterial(deckMaterial);
 
     //auto mat5 = iris::CustomMaterial::create();
     //mat5->generate(IrisUtils::getAbsoluteAssetPath(Constants::DEFAULT_SHADER));
@@ -422,10 +422,10 @@ void MainWindow::createLobbyScene()
     //auto node12 = iris::ViewerNode::create();
     //node12->setGlobalPos(QVector3D(0, 0, 8));
     //scene->rootNode->addChild(node12);
-    sceneView->vrControllers.insert(node->getNodeId(), sceneView->controller);
-    sceneView->vrControllers.insert(node2->getNodeId(), sceneView->metaController);
-    sceneView->vrControllers.insert(node3->getNodeId(), sceneView->controlController);
-    sceneView->vrControllers.insert(node4->getNodeId(), sceneView->viewController);
+    sceneView->vrControllers.insert(viewNode->getNodeId(), sceneView->controller);
+    sceneView->vrControllers.insert(metaNode->getNodeId(), sceneView->metaController);
+    sceneView->vrControllers.insert(controlNode->getNodeId(), sceneView->controlController);
+    sceneView->vrControllers.insert(deckNode->getNodeId(), sceneView->viewController);
 }
 
 void MainWindow::removeLobbyScene()

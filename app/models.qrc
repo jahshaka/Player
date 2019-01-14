@@ -12,6 +12,7 @@
         <file>content/primitives/cylinder.obj</file>
         <file>content/primitives/plane.obj</file>
         <file>content/primitives/vrplane.obj</file>
+        <file>content/primitives/vrplane1.obj</file>
         <file>content/primitives/vrdeck.obj</file>
         <file>content/primitives/sphere.obj</file>
         <file>content/primitives/hp_sphere.obj</file>

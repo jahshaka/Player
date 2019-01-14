@@ -71,17 +71,27 @@ void OverlayMethodHandler::selectMetadata(const QString &text)
 {
     // text is guid for default lookup
     if (text == "empty") {
+        currentlySelectedTileGuid = "";
         emit swipeManager->metadata(QStringList("empty"));
     }
     else {
         auto project = db->fetchProject(text);
+        currentlySelectedTileGuid = project.guid;
         QStringList str = { project.guid, project.name, "library", "null", "null" };
         emit swipeManager->metadata(str);
     }
 }
 
+void OverlayMethodHandler::emitSelectedTile(const QString &text)
+{
+    if (currentlySelectedTileGuid == text) {
+        emit swipeManager->selectedTileGuid(text);
+    } 
+}
+
 void OverlayMethodHandler::emitMetadata(const QString &image_guid, const QString &scene_title, const QString &guid, const QString &scene_name, const QString &actual)
 {
+    currentlySelectedTileGuid = actual;
     QStringList str = { image_guid, scene_title, guid, scene_name, actual };
     emit swipeManager->metadata(str);
 }

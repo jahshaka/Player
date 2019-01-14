@@ -61,20 +61,20 @@ Pane {
                     Label {
                         id:lab
                         text: "John Doe"
-                        font.weight: Font.Bold
-                        font.pixelSize: Qt.application.font.pixelSize * 1.7
-                        color : "#fff"
+                        font.weight: Font.Medium
+                        font.pixelSize: 28
+                        color : "#FFF"
                     }
 
                     Pane {
                         padding: 0
-                        implicitHeight: lab.height + padding
-                        implicitWidth: lab.width + padding
+                        implicitHeight: lab.height
+                        implicitWidth: lab.width
 
                         Label {
                             text: "12/12/2018"
-                            font.pixelSize: Qt.application.font.pixelSize * 1
-                            color: "white"
+                            font.pixelSize: 18
+                            color: "#AAA"
                             padding: 0
                             background: Rectangle {
                                 // border.color: "#888"
@@ -127,7 +127,7 @@ Pane {
         // https://stackoverflow.com/q/52581687/996468
         target: swipeManager
         onStartSomething: {
-            console.log("created " + id);
+            // console.log("created " + id);
             var component;
             var sprite;
             component = Qt.createComponent("DownloadWidget.qml");

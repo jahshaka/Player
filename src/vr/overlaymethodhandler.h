@@ -28,6 +28,7 @@ public:
 
 signals:
     void setIndex(int index);
+    void selectedTileGuid(QString g);
     void metadata(QStringList str);
     void startSomething(int name, QString id);
     void downloadProgress(int id, float prog);
@@ -76,6 +77,8 @@ private:
     QHash<int, QNetworkReply*> currentDownloads;
     SwipeManager *swipeManager;
 
+    QString currentlySelectedTileGuid;
+
 signals:
     void openProject(QString guid);
     //void downloadPercentageChanged();
@@ -106,6 +109,7 @@ public slots:
     void doSomething(const QString &text);
     void importWorld(QString url);
     void selectMetadata(const QString &text);
+    void emitSelectedTile(const QString &text);
     void emitMetadata(const QString &author, const QString &featured_image, const QString &guid, const QString &name, const QString &actual);
     void startDownload(const QString &id, const QString guid);
     void cancelDownload(const QString guid);

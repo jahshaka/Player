@@ -259,6 +259,8 @@ ProjectManager::ProjectManager(Database *handle, QWidget *parent) : QWidget(pare
 
     setFocusPolicy(Qt::ClickFocus);
     installEventFilter(this);
+
+    // openProjectFromGuid("00000000-0000-0000-0000-00reserved00");
 }
 
 bool ProjectManager::eventFilter(QObject* obj, QEvent* event)

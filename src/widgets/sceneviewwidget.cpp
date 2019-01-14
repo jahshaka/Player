@@ -976,7 +976,7 @@ void SceneViewWidget::renderCameraUi(iris::SpriteBatchPtr batch)
 		offset = 35 * devicePixelRatioF();
 	if (devicePixelRatioF() > 1.0f)
 		offset = 25 * devicePixelRatioF();
-	spriteBatch->drawString(font, QString("%1 %2").arg(cameraOrientation).arg(cameraView), QVector2D(8, height - offset), QColor(255, 255, 255, 180));
+	// spriteBatch->drawString(font, QString("%1 %2").arg(cameraOrientation).arg(cameraView), QVector2D(8, height - offset), QColor(255, 255, 255, 180));
 }
 
 void SceneViewWidget::resizeGL(int width, int height)
