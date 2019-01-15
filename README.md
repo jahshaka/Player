@@ -18,6 +18,7 @@ If you will be cloning the repo you can do both steps in one command by using `g
 Again, if you want to build the latest code, you might want to do a `git checkout dev` at this point.
 
 **If using Qt Creator (on any platform)**
+- If you are on a nix based system you will also need to install the QtQuick modules `libqt5qml5 libqt5quick5 libqt5quickwidgets5 qml-module-qtquick-controls2 qml-module-qtquick-controls qml-module-qtquick-layouts qml-module-qtquick-extras` 
 - Make sure Cmake has been installed and properly added to your path.
 - Open the `CMakeLists.txt` file (it will run and configure the default build target).
 - Build the application.

@@ -26,6 +26,16 @@ class SwipeManager : public QObject {
 public:
     using QObject::QObject;
 
+    Q_INVOKABLE QString getLastSelectedTileGuid() const { return theLastSelectedGuid; }
+    Q_INVOKABLE QStringList getLastSelectedTileGuidList() const { return theLastSelectedGuidList; }
+    //Q_INVOKABLE QString getLastSelectedTileGuidA() const { return theLastSelectedGuidList[0]; }
+    //Q_INVOKABLE QString getLastSelectedTileGuidB() const { return theLastSelectedGuidList[1]; }
+    //Q_INVOKABLE QString getLastSelectedTileGuidC() const { return theLastSelectedGuidList[2]; }
+    //Q_INVOKABLE QString getLastSelectedTileGuidD() const { return theLastSelectedGuidList[3]; }
+    //Q_INVOKABLE QString getLastSelectedTileGuidE() const { return theLastSelectedGuidList[4]; }
+    QString theLastSelectedGuid;
+    QStringList theLastSelectedGuidList;
+
 signals:
     void setIndex(int index);
     void selectedTileGuid(QString g);
@@ -78,6 +88,7 @@ private:
     SwipeManager *swipeManager;
 
     QString currentlySelectedTileGuid;
+    QString lastSelectedTileGuid;
 
 signals:
     void openProject(QString guid);
@@ -111,6 +122,9 @@ public slots:
     void selectMetadata(const QString &text);
     void emitSelectedTile(const QString &text);
     void emitMetadata(const QString &author, const QString &featured_image, const QString &guid, const QString &name, const QString &actual);
+    
+    void emitLastSelectedTileLibrary(const QString &text);
+    void emitLastSelectedTileOnline(const QString &author, const QString &featured_image, const QString &guid, const QString &name, const QString &actual);
     void startDownload(const QString &id, const QString guid);
     void cancelDownload(const QString guid);
     void startSomething(int name, const QString &id);

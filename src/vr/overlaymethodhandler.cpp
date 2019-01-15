@@ -89,6 +89,17 @@ void OverlayMethodHandler::emitSelectedTile(const QString &text)
     } 
 }
 
+void OverlayMethodHandler::emitLastSelectedTileLibrary(const QString &text)
+{
+    swipeManager->theLastSelectedGuid = text;
+}
+
+void OverlayMethodHandler::emitLastSelectedTileOnline(const QString &image_guid, const QString &scene_title, const QString &guid, const QString &scene_name, const QString &actual)
+{
+    QStringList str = { image_guid, scene_title, guid, scene_name, actual };
+    swipeManager->theLastSelectedGuidList = str;
+}
+
 void OverlayMethodHandler::emitMetadata(const QString &image_guid, const QString &scene_title, const QString &guid, const QString &scene_name, const QString &actual)
 {
     currentlySelectedTileGuid = actual;

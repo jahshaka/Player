@@ -1258,6 +1258,13 @@ void SceneViewWidget::keyPressEvent(QKeyEvent *event)
 {
     KeyboardState::keyStates[event->key()] = true;
 	camController->onKeyPressed((Qt::Key)event->key());
+
+	if ((Qt::Key) event->key() == Qt::Key_Escape) {
+		auto uid = Globals::project->getProjectGuid();
+		if (uid != "00000000-0000-0000-0000-00reserved00") {
+			UiManager::projectManager->openProjectFromGuid("00000000-0000-0000-0000-00reserved00");
+		}
+	}
 }
 
 void SceneViewWidget::keyReleaseEvent(QKeyEvent *event)

@@ -99,8 +99,14 @@ Rectangle {
                 rect.color = "#006DEF"
 
                 var theGuid;
-                if (view == "library") theGuid = sceneGuid;
-                if (view == "online") theGuid = actual_guid;
+                if (view == "library") {
+                    theGuid = sceneGuid;
+                    methodHandler.emitLastSelectedTileLibrary(sceneGuid);
+                } else {
+                    theGuid = actual_guid;
+                    methodHandler.emitLastSelectedTileOnline(featured_image, sceneTitle, guid, sceneName, actual_guid);
+                }
+
                 methodHandler.emitSelectedTile(theGuid);
             }
 
@@ -111,13 +117,36 @@ Rectangle {
             onExited: {
                 if (wasPressed) {
                     if (view == "library") {
-                        methodHandler.selectMetadata(guid);
+                        methodHandler.selectMetadata(swipeManager.getLastSelectedTileGuid() ? swipeManager.getLastSelectedTileGuid() : "empty");
                     } else {
-                        methodHandler.emitMetadata(featured_image, sceneTitle, guid, sceneName, actual_guid);
+                        var a = swipeManager.getLastSelectedTileGuidList()[0]
+                        var b = swipeManager.getLastSelectedTileGuidList()[1]
+                        var c = swipeManager.getLastSelectedTileGuidList()[2]
+                        var d = swipeManager.getLastSelectedTileGuidList()[3]
+                        var e = swipeManager.getLastSelectedTileGuidList()[4]
+
+                        methodHandler.emitMetadata(a, b, c, d, e);
                     }
                 } else {
                     rect.color = "transparent"
-                    methodHandler.selectMetadata("empty")
+
+                    if (view == "library") {
+                        methodHandler.selectMetadata(swipeManager.getLastSelectedTileGuid() ? swipeManager.getLastSelectedTileGuid() : "empty")
+                    } else {
+                        
+                        var a = swipeManager.getLastSelectedTileGuidList()[0]
+                        var b = swipeManager.getLastSelectedTileGuidList()[1]
+                        var c = swipeManager.getLastSelectedTileGuidList()[2]
+                        var d = swipeManager.getLastSelectedTileGuidList()[3]
+                        var e = swipeManager.getLastSelectedTileGuidList()[4]
+
+                        if (a) {
+                            methodHandler.emitMetadata(a, b, c, d, e)
+                        } else {
+                            methodHandler.selectMetadata("empty")  
+                        }
+                    }
+                    // console.log("last selected was " + swipeManager.getLastSelectedTileGuid())
                 }
             }
 
